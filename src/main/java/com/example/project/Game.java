@@ -31,12 +31,12 @@ public class Game {
         }
     }
 
-    // Main game loop
     public void play() { //write your game logic here
+
         Scanner scanner = new Scanner(System.in);
 
         while (!player.getWin() && player.getLives() > 0) {
-            clearScreen();
+            clearScreen(); 
             grid.display();
 
             System.out.println("Player Coordinates: " + player.getCoords());
@@ -58,8 +58,7 @@ public class Game {
                 Sprite targetObj = grid.getGrid()[size - 1 - targetY][targetX];
                 // Block trophy if treasures not all collected
                 if (targetObj instanceof Trophy && player.getTreasureCount() != treasures.length) {
-                    System.out.println("Collect all treasures first!");
-                    System.out.println("Treasures: " + player.getTreasureCount() + " of " + treasures.length);
+                    System.out.println("Collect all treasures first");
                     System.out.println("Press Enter to continue...");
                     scanner.nextLine();
                     continue;
