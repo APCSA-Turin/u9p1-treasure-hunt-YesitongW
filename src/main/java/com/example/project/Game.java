@@ -15,12 +15,14 @@ public class Game {
         play();       // run game loop
     }
 
-    public static void clearScreen() {
+    public static void clearScreen() { //do not modify
         try {
             final String os = System.getProperty("os.name").toLowerCase();
             if (os.contains("win")) {
+                // Windows
                 new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
             } else {
+                // Unix-based (Linux, macOS)
                 System.out.print("\033[H\033[2J");
                 System.out.flush();
             }
@@ -30,7 +32,7 @@ public class Game {
     }
 
     // Main game loop
-    public void play() {
+    public void play() { //write your game logic here
         Scanner scanner = new Scanner(System.in);
 
         while (!player.getWin() && player.getLives() > 0) {
