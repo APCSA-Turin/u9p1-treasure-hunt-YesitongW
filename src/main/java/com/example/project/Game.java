@@ -2,7 +2,6 @@ package com.example.project;
 import java.util.Scanner;
 
 public class Game {
-    // Game objects and settings
     private Grid grid;
     private Player player;
     private Enemy[] enemies;
@@ -10,7 +9,6 @@ public class Game {
     private Trophy trophy;
     private int size; // grid size (size x size)
 
-    // Constructor: set up game and start playing
     public Game(int size) {
         this.size = size;
         initialize(); // set up grid and sprites
@@ -39,7 +37,6 @@ public class Game {
             clearScreen();
             grid.display();
 
-            // Show status on separate lines
             System.out.println("Player Coordinates: " + player.getCoords());
             System.out.println(player.getRowCol(size));
             System.out.println("Lives: " + player.getLives() + ", Treasures: " + player.getTreasureCount());
@@ -55,7 +52,7 @@ public class Game {
                 else if (move.equals("a")) targetX--; // left
                 else if (move.equals("d")) targetX++; // right
 
-                // Get sprite at target cell
+                // Get sprite at target spot
                 Sprite targetObj = grid.getGrid()[size - 1 - targetY][targetX];
                 // Block trophy if treasures not all collected
                 if (targetObj instanceof Trophy && player.getTreasureCount() != treasures.length) {
@@ -75,13 +72,25 @@ public class Game {
             }
         }
 
-        // If win, change all non-player sprites to rainbows
+        // If win, change all non-player sprites to 🌈
         if (player.getWin()) {
             Sprite[][] gridArray = grid.getGrid();
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if (gridArray[i][j] != player) {
                         gridArray[i][j].emoji = "🌈";
+                    }
+                }
+            }
+        }
+
+        // If lost, change all non-player sprites to 💀 
+        if (!(player.getWin())) {
+            Sprite[][] gridArray = grid.getGrid();
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < size; j++) {
+                    if (gridArray[i][j] != player) {
+                        gridArray[i][j].emoji = "💀";
                     }
                 }
             }
