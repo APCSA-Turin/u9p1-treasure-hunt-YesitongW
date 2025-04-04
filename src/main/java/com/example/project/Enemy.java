@@ -1,20 +1,20 @@
 package com.example.project;
 
-//Enemy only need constructor and getCoords() getRowCol()
-public class Enemy  { //child  of Sprite
-    
+public class Enemy extends Sprite {
     public Enemy(int x, int y) {
+        super(x, y);
+        this.emoji = "🦂"; // set enemy symbol
     }
-
-
-    //the methods below should override the super class 
-
-
-    public String getCoords(){ //returns "Enemy:"+coordinates
-        return "";
+    
+    //enemy coordinates
+    @Override
+    public String getCoords() {
+        return "Enemy:" + super.getCoords();
     }
-
-
-    public String getRowCol(int size){ //return "Enemy:"+row col
+    
+    //enemy grid position
+    @Override
+    public String getRowCol(int size) {
+        return "Enemy:" + super.getRowCol(size);
     }
 }

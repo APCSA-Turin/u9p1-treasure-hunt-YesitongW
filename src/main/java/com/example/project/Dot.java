@@ -1,8 +1,9 @@
 package com.example.project;
 
-
-//Dot only needs a constructor
-public class Dot{
-
-
+//represents an empty spot
+public class Dot extends Sprite {
+    public Dot(int x, int y) {
+        super(x, y);
+        this.emoji = "⬜"; //dot symbol
+    }
 }
