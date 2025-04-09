@@ -35,9 +35,10 @@ public class Game {
 
         Scanner scanner = new Scanner(System.in);
 
-        while (!player.getWin() && player.getLives() > 0) {
-            clearScreen(); 
-            grid.display();
+        while (!player.getWin() && player.getLives() > 0) {// Continue loop while player hasn't won and still has lives
+
+            clearScreen(); //clear the screen at the start of each loop literation
+            grid.display();// display the current gird state
 
             System.out.println("Player Coordinates: " + player.getCoords());
             System.out.println(player.getRowCol(size));
@@ -45,8 +46,7 @@ public class Game {
             System.out.print("Move (w/a/s/d): ");
             String move = scanner.nextLine();
 
-            if (player.isValid(size, move)) {
-                // Calculate where the player wants to go
+            if (player.isValid(size, move)) {// Calculate where the player wants to go
                 int targetX = player.getX();
                 int targetY = player.getY();
                 if (move.equals("w")) targetY++;      // up
@@ -61,7 +61,7 @@ public class Game {
                     System.out.println("Collect all treasures first");
                     System.out.println("Press Enter to continue...");
                     scanner.nextLine();
-                    continue;
+                    continue;// skip to next interation of the loop without calling the move
                 }
 
                 // Do the interaction (treasure, enemy, etc.)
@@ -75,7 +75,7 @@ public class Game {
 
         // If win, change all non-player sprites to 🌈
         if (player.getWin()) {
-            Sprite[][] gridArray = grid.getGrid();
+            Sprite[][] gridArray = grid.getGrid();//get the gid array
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if (gridArray[i][j] != player) {
@@ -87,7 +87,7 @@ public class Game {
 
         // If lost, change all non-player sprites to 💀 
         if (!(player.getWin())) {
-            Sprite[][] gridArray = grid.getGrid();
+            Sprite[][] gridArray = grid.getGrid();//get the gid array
             for (int i = 0; i < size; i++) {
                 for (int j = 0; j < size; j++) {
                     if (gridArray[i][j] != player) {
@@ -97,8 +97,8 @@ public class Game {
             }
         }
 
-        clearScreen();
-        grid.display();
+        clearScreen();//clear screen for finl dispaly
+        grid.display();//display final state og the grid
         System.out.println("Player Coordinates: " + player.getCoords());
         System.out.println(player.getRowCol(size));
         System.out.println("Lives: " + player.getLives() + ", Treasures: " + player.getTreasureCount());
@@ -108,7 +108,7 @@ public class Game {
 
     // Set up grid and place all sprites
     public void initialize() {
-        grid = new Grid(size);
+        grid = new Grid(size);//create a grid with specific size
         player = new Player(0, 0);
         trophy = new Trophy(size - 1, size - 1);
         treasures = new Treasure[]{ new Treasure(2, 2), new Treasure(7, 7) };

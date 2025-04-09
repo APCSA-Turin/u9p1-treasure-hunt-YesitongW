@@ -17,9 +17,8 @@ public class Player extends Sprite {
     public int getLives() { return numLives; }
     public boolean getWin() { return win; }
 
-    // Move the player based on input direction
     @Override
-    public void move(String direction) {
+    public void move(String direction) {    // Move the player based on input direction
         if(direction.equals("w")){
             setY(getY() + 1); //up
         } else if(direction.equals("s")){
@@ -43,8 +42,7 @@ public class Player extends Sprite {
         return "Player:" + super.getRowCol(size);
     }
 
-    // When the player goes into a new sot
-    public void interact(int size, String direction, int numTreasures, Object obj) {
+    public void interact(int size, String direction, int numTreasures, Object obj) { // handle interactions based on the object the player moves into
         if (obj instanceof Treasure && !(obj instanceof Trophy)) {
             treasureCount++; //touch treasure
         } else if (obj instanceof Enemy) {
@@ -56,8 +54,7 @@ public class Player extends Sprite {
         }
     }
 
-    // Check if is in bounds
-    public boolean isValid(int size, String direction) {
+    public boolean isValid(int size, String direction) {// Check if is in bounds
         int newX = getX();
         int newY = getY();
         if (direction.equals("w")) {
@@ -69,6 +66,6 @@ public class Player extends Sprite {
         } else if (direction.equals("d")){
             newX++;
         }
-        return newX >= 0 && newX < size && newY >= 0 && newY < size;
+        return newX >= 0 && newX < size && newY >= 0 && newY < size; //return true if the nre position is within grid boundaries, false otherwise
     }
 }
